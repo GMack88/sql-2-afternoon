@@ -122,3 +122,30 @@ select count(*), genre.name
 from track
     join genre on track.genre_id = genre.genre_id
 group by genre.name;
+
+
+SELECT COUNT(*), g.name
+FROM track t
+    JOIN genre g ON g.genre_id = t.genre_id
+WHERE g.name = 'Pop' OR g.name = 'Rock'
+GROUP BY g.name;
+
+
+
+SELECT ar.name, COUNT(*)
+FROM album al
+    JOIN artist ar ON ar.artist_id = al.artist_id
+GROUP BY ar.name;
+
+
+
+SELECT DISTINCT composer
+FROM track;
+
+
+SELECT DISTINCT billing_postal_code
+FROM invoice;
+
+
+SELECT DISTINCT company
+FROM customer;
