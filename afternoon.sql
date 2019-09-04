@@ -51,3 +51,74 @@ from invoice_line
 where unit_price > 0.99);
 
 
+select *
+from playlist_track
+where playlist_id in (select playlist_id
+from playlist
+where name = 'Music');
+
+
+select *
+from track
+where track_id in (select track_id
+from playlist_track
+where playlist_id = 5 );
+
+
+select *
+from track
+where genre_id in (select genre_id
+from genre
+where name = 'Comedy');
+
+
+select *
+from track
+where name in (select name
+from album
+where name = 'Fireball');
+
+
+select *
+from track
+where album_id in (
+  select album_id
+from album
+where artist_id in (
+    select artist_id
+from artist
+where name = 'Queen'));
+
+
+update customer
+set fax = null
+where fax is not null;
+
+
+UPDATE customer
+SET company = 'Self'
+WHERE company IS null;
+
+
+UPDATE customer 
+SET last_name = 'Thompson' 
+WHERE first_name = 'Julia' AND last_name = 'Barnett';
+
+
+UPDATE customer
+SET support_rep_id = 4
+WHERE email = 'luisrojas@yahoo.cl';
+
+
+update track
+set composer = 'The darkness around us'
+where genre_id = (select genre_id
+    from genre
+    where name = 'Metal')
+    and composer is null;
+
+
+select count(*), genre.name
+from track
+    join genre on track.genre_id = genre.genre_id
+group by genre.name;
